@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://github.com/Gamerou/cloudflare_access_ip_whitelist
+# https://github.com/Gamerou/cloudflare_multiple_ddns
 # by Gamerou
 
 # Cloudflare API Details
