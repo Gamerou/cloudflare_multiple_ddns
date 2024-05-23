@@ -14,7 +14,7 @@ The goal of this project is to create an automated solution for updating IP whit
 3. **Discord Integration (Optional):**
    Real-time communication is established through Discord, enabling the script to send notifications to a designated channel. These notifications promptly alert administrators about the success or failure of policy updates.
 
-4. **Discord Integration (Optional):**
+4. **Mail Integration (Optional):**
    Near Real-time communication is established through Mail, enabling the script to send notifications to a designated address. These notifications promptly alert administrators about the success or failure of policy updates.
 
 5. **Alternative API Option:**
