@@ -11,16 +11,26 @@ CF_ZONE_ID="YOUR_CLOUDFLARE_ZONE_ID"
 # Discord Webhook URL
 DISCORD_WEBHOOK_URL="YOUR_DISCORD_WEBHOOK_URL"
 
+# Debug mode
+DEBUG=false
+
 # List of proxied and non-proxied Cloudflare DNS records to update
 PROXIED_DNS_RECORDS=("DOMAIN_A" "DOMAIN_B") # Leave this empty if there are no proxied records
 NON_PROXIED_DNS_RECORDS=("DOMAIN_C" "DOMAIN_D") # Leave this empty if there are no non-proxied records
+
+# Function to log debug messages
+log_debug() {
+    if [ "$DEBUG" = true ]; then
+        echo "DEBUG: $1"
+    fi
+}
 
 # Function to update DNS record
 update_dns_record() {
     local record=$1
     local proxied=$2
 
-    echo "Updating DNS record: $record"
+    log_debug "Updating DNS record: $record"
     # Get the record ID from Cloudflare
     record_id=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/dns_records?type=A&name=$record" -H "X-Auth-Email: $CF_API_EMAIL" -H "X-Auth-Key: $CF_API_KEY" | jq -r '.result[0].id')
 
@@ -40,19 +50,23 @@ update_dns_record() {
         if [ "$(echo "${response}" | jq -r '.success')" = "true" ]; then
             echo "Successfully updated DNS Record: ${record}"
             # Send success message to Discord
-            discord_message="Successfully updated Cloudflare DNS Record ${record} with IPv4: ${current_public_ipv4}"
-            curl -H "Content-Type: application/json" -d "{\"content\": \"$discord_message\"}" "${DISCORD_WEBHOOK_URL}"
+            if [ "$DEBUG" = false ]; then
+                discord_message="Successfully updated Cloudflare DNS Record ${record} with IPv4: ${current_public_ipv4}"
+                curl -H "Content-Type: application/json" -d "{\"content\": \"$discord_message\"}" "${DISCORD_WEBHOOK_URL}"
+            fi
         else
             echo "Error updating DNS Record: ${record}. Response: ${response}"
             # Send error message to Discord
-            discord_message="Error updating Cloudflare DNS Record ${record}. Response: ${response}"
-            curl -H "Content-Type: application/json" -d "{\"content\": \"$discord_message\"}" "${DISCORD_WEBHOOK_URL}"
+            if [ "$DEBUG" = false ]; then
+                discord_message="Error updating Cloudflare DNS Record ${record}. Response: ${response}"
+                curl -H "Content-Type: application/json" -d "{\"content\": \"$discord_message\"}" "${DISCORD_WEBHOOK_URL}"
+            fi
         fi
 
         # Add a delay of 0.5 seconds
         sleep 0.5
     else
-        echo "Record ID not found for DNS Record: ${record}. Skipping update."
+        log_debug "Record ID not found for DNS Record: ${record}. Skipping update."
     fi
 }
 
