@@ -14,12 +14,15 @@ The goal of this project is to create an automated solution for updating IP whit
 3. **Discord Integration (Optional):**
    Real-time communication is established through Discord, enabling the script to send notifications to a designated channel. These notifications promptly alert administrators about the success or failure of policy updates.
 
-4. **Alternative API Option:**
+4. **Mail Integration (Optional):**
+   Near Real-time communication is established through Mail, enabling the script to send notifications to a designated address. These notifications promptly alert administrators about the success or failure of policy updates.
+
+5. **Alternative API Option:**
    In scenarios where Home Assistant is not employed, the script accommodates the use of alternative APIs to obtain server IP addresses. This provides users with flexibility, ensuring that IP whitelisting updates can still be achieved, irrespective of the platform.
 
 **Usage Instructions:**
 
-1. Obtain a Cloudflare API token and configure a Discord webhook.
+1. Obtain a Cloudflare API token (requires "Access: Apps and Policies (Edit)" Permissions or use global key (*not recommended*)).
 2. Personalize the script by replacing placeholders with actual credentials and values.
 3. Execute the script, which will autonomously update Cloudflare Access policies based on the server's IP addresses.
 4. Stay informed about policy updates through real-time Discord notifications.

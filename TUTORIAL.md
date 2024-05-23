@@ -4,7 +4,7 @@ In this tutorial, we'll guide you through creating a Bash script to update Cloud
 
 ## Prerequisites:
 - A Cloudflare account with API access.
-- Access to HomeAssistant API.
+(- Access to HomeAssistant API.)
 - jq installed on your system. You can install jq using your system's package manager.
 
 ## Step 1: Obtain Your Cloudflare API Key
