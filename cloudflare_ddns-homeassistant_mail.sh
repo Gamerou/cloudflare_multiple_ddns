@@ -90,14 +90,18 @@ update_dns_record() {
 }
 
 # Update proxied DNS records
-for record in "${proxied_dns_records[@]}"; do
-    update_dns_record $record true
-done
+if [ ${#PROXIED_DNS_RECORDS[@]} -gt 0 ]; then
+    for record in "${PROXIED_DNS_RECORDS[@]}"; do
+        update_dns_record $record true
+    done
+fi
 
 # Update non-proxied DNS records
-for record in "${non_proxied_dns_records[@]}"; do
-    update_dns_record $record false
-done
+if [ ${#NON_PROXIED_DNS_RECORDS[@]} -gt 0 ]; then
+    for record in "${NON_PROXIED_DNS_RECORDS[@]}"; do
+        update_dns_record $record false
+    done
+fi
 
 # Send consolidated email
 echo -e "${email_body}" | mail -s "${mail_subject}" -r "${sender_email}" "${recipient_email}"
