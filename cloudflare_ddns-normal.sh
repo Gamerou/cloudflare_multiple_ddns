@@ -15,8 +15,8 @@ DISCORD_WEBHOOK_URL="YOUR_DISCORD_WEBHOOK_URL"
 DEBUG=false
 
 # List of Cloudflare DNS records to update
-proxied_dns_records=("*.schandlserver.de") # Leave this empty if there are no proxied records
-non_proxied_dns_records=(stashapp.schandlserver.de) # Leave this empty if there are no non-proxied records
+proxied_dns_records=("example1.com") # Leave this empty if there are no proxied records
+non_proxied_dns_records=("example2.com") # Leave this empty if there are no non-proxied records
 
 # Function to log debug messages
 log_debug() {
