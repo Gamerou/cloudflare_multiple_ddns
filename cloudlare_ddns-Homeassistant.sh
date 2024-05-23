@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# https://github.com/Gamerou/cloudflare_multiple_ddns
+# Gamerou
+
 # Cloudflare API Details
 CF_API_KEY="YOUR_CLOUDFLARE_API_KEY"
 CF_API_EMAIL="YOUR_CLOUDFLARE_EMAIL"
