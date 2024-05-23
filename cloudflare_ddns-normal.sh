@@ -113,7 +113,7 @@ else
     done
 fi
 
-# Send consolidated email
+# Send consolidated discord message 
 if [ "$DEBUG" = false ]; then
     curl -H "Content-Type: application/json" -d "{\"content\": \"$DISCORD_MESSAGE\"}" "${DISCORD_WEBHOOK_URL}"
 else
