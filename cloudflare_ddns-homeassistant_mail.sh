@@ -22,8 +22,8 @@ mail_subject="Cloudflare DNS Record Update"
 DEBUG=false
 
 # List of Cloudflare DNS records to update
-proxied_dns_records=("example.com")
-non_proxied_dns_records=("example2.com" "example3.com")
+proxied_dns_records=("example.com") # Leave this empty if there are no proxied records
+non_proxied_dns_records=("example2.com" "example3.com") # Leave this empty if there are no non-proxied records
 
 # Function to log debug messages
 log_debug() {
